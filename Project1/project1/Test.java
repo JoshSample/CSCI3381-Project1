@@ -17,6 +17,10 @@ public class Test {
 		p1.addACE("Sexual Abuse");
 		p1.removeACE("Physical Abuse");
 		System.out.println(p1.getACEs());
+		// Testing Data
+		AceDataManagerADT myData = new Data();
+		myData.addPatient(p1);
+		System.out.println(myData.getPatient("12"));
 	}
 
 }

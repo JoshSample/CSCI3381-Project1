@@ -2,34 +2,49 @@ package project1;
 
 import java.util.ArrayList;
 
+// Josh Sample
+
 public class Data implements AceDataManagerADT {
 
-	public void addPatient(PatientADT p) { //Adds a new patient to the data set
-		// TODO Auto-generated method stub
-		
+	private ArrayList<PatientADT> patientList;
+	
+	public Data() {
+		patientList = new ArrayList<PatientADT>();
+	}
+	
+	//Adds a new patient to the data set
+	public void addPatient(PatientADT p) { 
+		patientList.add(p);
 	}
 
-	public PatientADT getPatient(String id) { //returns the patient with the given identifier null if the patient is not in the data set
-		// TODO Auto-generated method stub
+	//returns the patient with the given identifier null if the patient is not in the data set
+	public PatientADT getPatient(String id) { 
+		for (int i = 0; i < patientList.size(); i++) {
+			PatientADT p = patientList.get(i);
+			if (p.getId() == id)
+				return p;
+		}
 		return null;
 	}
+	
+	// returns an arraylist containing all of the risk factors associated with the input list of ACEs
+	public ArrayList<String> getRiskFactors(ArrayList<String> aces) { 
 
-	public ArrayList<String> getRiskFactors(ArrayList<String> aces) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	// write to the file set during instantiation
 	public void writeToFile() {
-		// TODO Auto-generated method stub
 		
 	}
 
+	// write to the file indicated in parameter
 	public void writeToFile(String fn) {
-		// TODO Auto-generated method stub
 		
 	}
 	
-	public String toString() { //Returns a string representation of the ACE patient and risk factors data manager
+	//Returns a string representation of the ACE patient and risk factors data manager
+	public String toString() { 
 	
 		return null;
 	}

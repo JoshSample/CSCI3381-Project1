@@ -1,6 +1,8 @@
 package project1;
 import java.util.ArrayList;
 
+// Josh Sample
+
 public interface AceDataManagerADT {
 	public void addPatient (PatientADT p); //Adds a new patient to the data set
 	public PatientADT getPatient (String id); //returns the patient with the given identifier,
