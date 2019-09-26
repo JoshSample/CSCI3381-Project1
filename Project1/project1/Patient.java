@@ -8,16 +8,18 @@ public class Patient implements PatientADT {
 
 	private String id;
 	private String name;
-	private ArrayList<String> ace = new ArrayList<String>();
+	private ArrayList<String> ace;
 	
 	public Patient() {
 		id = "Not Set";
 		name = "Not Set";
+		ace = new ArrayList<String>();
 	}
 	
 	public Patient(String i, String n) {
 		id = i;
 		name = n;
+		ace = new ArrayList<String>();
 	}
 	
 	public void setId(String i) {  // sets the unique identifier of this patient
