@@ -19,8 +19,12 @@ public class Test {
 		System.out.println(p1.getACEs());
 		// Testing Data
 		AceDataManagerADT myData = new Data();
+		PatientADT p2 = new Patient("345", "Steve");
 		myData.addPatient(p1);
+		myData.addPatient(p2);
 		System.out.println(myData.getPatient("12"));
+		System.out.println(myData.toString());
+		System.out.println(myData.getRiskFactors(p1.getACEs()));
 	}
 
 }
