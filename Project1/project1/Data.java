@@ -21,14 +21,16 @@ public class Data implements AceDataManagerADT {
 	public PatientADT getPatient(String id) { 
 		for (int i = 0; i < patientList.size(); i++) {
 			PatientADT p = patientList.get(i);
-			if (p.getId() == id)
+			if (p.getId() == id) {
+				toString();
 				return p;
+			}
 		}
 		return null;
 	}
 	
 	// returns an arraylist containing all of the risk factors associated with the input list of ACEs
-	public ArrayList<String> getRiskFactors(ArrayList<String> aces) { 
+	public ArrayList<String> getRiskFactors(ArrayList<String> aces) {
 		ArrayList<String> riskFactors = new ArrayList<String>();
 		if (aces.size() == 0) 
 			riskFactors.add("Patient has no ACEs");
@@ -47,13 +49,14 @@ public class Data implements AceDataManagerADT {
 			riskFactors.add("Shortened Life Span");
 		}
 		if (aces.size() > 3) {
-			riskFactors.add("700% increase in alcoholism");
-			riskFactors.add("Increased risk of cancer");
+			riskFactors.remove("Alcohol Abuse");
+			riskFactors.add("High chance of alcoholism");
+			riskFactors.remove("Cancer");
+			riskFactors.add("High risk of cancer");
 			riskFactors.add("Increase in emphysema");
 		}
-		if (aces.size() > 6) {
+		if (aces.size() > 6)
 			riskFactors.add("High risk of suicide");
-		}
 		return riskFactors;
 	}
 	
@@ -69,10 +72,6 @@ public class Data implements AceDataManagerADT {
 	
 	//Returns a string representation of the ACE patient and risk factors data manager
 	public String toString() { 
-		String toReturn = "";
-		for (PatientADT p : patientList) {
-			toReturn += p.toString() + "\n";
-		}
-		return toReturn;
+		return null;
 	}
 }
