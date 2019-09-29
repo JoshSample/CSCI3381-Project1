@@ -28,7 +28,7 @@ public class Test {
 		System.out.println(myData.getRiskFactors(p2.getACEs()));
 		System.out.println(myData.getPatient("12"));
 		System.out.println(myData.getPatient("3"));
-		System.out.println(myData.toString());
+		System.out.println(myData);
 	}
 
 }

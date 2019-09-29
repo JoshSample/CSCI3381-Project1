@@ -21,10 +21,8 @@ public class Data implements AceDataManagerADT {
 	public PatientADT getPatient(String id) { 
 		for (int i = 0; i < patientList.size(); i++) {
 			PatientADT p = patientList.get(i);
-			if (p.getId() == id) {
-				toString();
+			if (p.getId() == id) 
 				return p;
-			}
 		}
 		return null;
 	}
@@ -72,6 +70,10 @@ public class Data implements AceDataManagerADT {
 	
 	//Returns a string representation of the ACE patient and risk factors data manager
 	public String toString() { 
-		return null;
+		for (PatientADT p : patientList) {
+			System.out.print("Patient " + p.toString() + " has these risk facotrs: ");
+			System.out.println(getRiskFactors(p.getACEs()));
+		}
+		return "";
 	}
 }
