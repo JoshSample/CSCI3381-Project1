@@ -19,7 +19,7 @@ public class Test {
 		System.out.println(p1.getACEs());
 		// Testing Data
 		System.out.println();
-		AceDataManagerADT myData = new Data();
+		AceDataManagerADT myData = new Data("./Project1/dataWriteTest.txt");
 		PatientADT p2 = new Patient("345", "Steve");
 		p2.addACE("Physical Abuse");
 		myData.addPatient(p1);
@@ -29,6 +29,8 @@ public class Test {
 		System.out.println(myData.getPatient("12"));
 		System.out.println(myData.getPatient("3"));
 		System.out.println(myData);
+		myData.writeToFile();
+		myData.writeToFile("anotherFile.txt");
 	}
 
 }

@@ -1,17 +1,32 @@
 package project1;
 
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 
 // Josh Sample
 
 public class Data implements AceDataManagerADT {
 
 	private ArrayList<PatientADT> patientList;
-	
+	private String fileName;
+
 	public Data() {
 		patientList = new ArrayList<PatientADT>();
+		fileName = null;
 	}
-	
+
+	public Data(String fn) {
+		patientList = new ArrayList<PatientADT>();
+		fileName = fn;
+		readFile();
+	}
+
 	//Adds a new patient to the data set
 	public void addPatient(PatientADT p) { 
 		patientList.add(p);
@@ -26,7 +41,7 @@ public class Data implements AceDataManagerADT {
 		}
 		return null;
 	}
-	
+
 	// returns an arraylist containing all of the risk factors associated with the input list of ACEs
 	public ArrayList<String> getRiskFactors(ArrayList<String> aces) {
 		ArrayList<String> riskFactors = new ArrayList<String>();
@@ -57,21 +72,63 @@ public class Data implements AceDataManagerADT {
 			riskFactors.add("High risk of suicide");
 		return riskFactors;
 	}
-	
+
+	public void readFile() {
+		BufferedReader lineReader = null;
+		try {		
+			lineReader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), Charset.forName("UTF-8")));  
+			String line = null;
+			String [] tokens = line.split(",");
+			int i = 0;
+			while ((line = lineReader.readLine())!=null) {
+				tokens[i] = line;
+				i++;
+			}
+		} catch (Exception e) {
+			System.err.println("there was a problem with the file.  either no such file or format error");
+		} finally {
+			if (lineReader != null)
+				try {
+					lineReader.close();
+				} catch (IOException e) {
+					System.err.println("could not close BufferedReader");
+				}
+		}
+	}
+
 	// write to the file set during instantiation
 	public void writeToFile() {
-		
+		doWrite(fileName);
 	}
 
 	// write to the file indicated in parameter
 	public void writeToFile(String fn) {
-		
+		doWrite(fn);
 	}
-	
+
+	public void doWrite(String fn) {
+		try
+		{
+			FileWriter fw = new FileWriter(fn);
+			BufferedWriter myOutfile = new BufferedWriter(fw);			
+
+			for (PatientADT p2 : patientList) {
+				Patient p = (Patient)p2;
+				myOutfile.write(p.toString()+"\n");
+			}
+			myOutfile.flush();
+			myOutfile.close();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Didn't save to " + fn);
+		}
+	}	
+
 	//Returns a string representation of the ACE patient and risk factors data manager
 	public String toString() { 
 		for (PatientADT p : patientList) {
-			System.out.print("Patient " + p.toString() + " has these risk facotrs: ");
+			System.out.print("Patient " + p.toString() + " has these risk factors: ");
 			System.out.println(getRiskFactors(p.getACEs()));
 		}
 		return "";

@@ -61,7 +61,7 @@ public class Patient implements PatientADT {
 	}
 	
 	public String toString() { //Returns a string representation of this patient
-		return name+"("+id+")";
+		return name+", "+id+", "+ace.toString().replace("[", "").replace("]", "");
 	}
 
 }
